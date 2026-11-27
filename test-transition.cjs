@@ -6,6 +6,7 @@ const listeners = new Map();
 const frames = [];
 const classes = new Set();
 const properties = new Map();
+const storage = new Map();
 const elements = new Map();
 function element(id) {
   if (!elements.has(id)) elements.set(id, {
@@ -31,6 +32,10 @@ function element(id) {
   return elements.get(id);
 }
 const win = {
+  localStorage: {
+    getItem: key => storage.has(key) ? storage.get(key) : null,
+    setItem: (key, value) => storage.set(key, value),
+  },
   matchMedia: () => ({ matches: false }),
   requestAnimationFrame: fn => frames.push(fn),
   cancelAnimationFrame() {},
@@ -63,4 +68,12 @@ const css = fs.readFileSync('dist/styles.css', 'utf8');
 assert.match(css, /is-video-ending \.video-screen\{[^}]*z-index:2;opacity:var\(--video-opacity,1\)/);
 assert.match(css, /is-video-ending \.invitation\{[^}]*z-index:1/);
 assert.doesNotMatch(css, /transition-shade|cinematic-veil|brightness\(0\)/);
-console.log('Transição local verificada.');
+const messages = [];
+for (let index = 0; index < 10; index++) {
+  listeners.get('confirmButton:click')({ currentTarget: element('confirmButton') });
+  messages.push(new URL(element('confirmButton').href).searchParams.get('text'));
+}
+assert.equal(new Set(messages).size, 10);
+listeners.get('confirmButton:click')({ currentTarget: element('confirmButton') });
+assert.equal(new URL(element('confirmButton').href).searchParams.get('text'), messages[0]);
+console.log('Transição e alternância das mensagens verificadas.');

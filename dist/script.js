@@ -19,6 +19,15 @@
     'Oi, Camila! Convite aceito e presença confirmada! Que venha essa festa maravilhosa!',
     'Camila, dia 15 de dezembro temos um encontro marcado! Estarei lá para comemorar com você!'
   ];
+  const confirmationKey = 'camila-last-confirmation';
+  let lastConfirmationIndex = -1;
+  try {
+    const saved = window.localStorage.getItem(confirmationKey);
+    const index = Number(saved);
+    if (saved !== null && Number.isInteger(index) && index >= 0 && index < confirmationMessages.length) {
+      lastConfirmationIndex = index;
+    }
+  } catch {}
   let showingInvitation = false;
   let blendFrame;
 
@@ -103,7 +112,9 @@
   });
 
   $('confirmButton').addEventListener('click', event => {
-    const message = confirmationMessages[Math.floor(Math.random() * confirmationMessages.length)];
+    lastConfirmationIndex = (lastConfirmationIndex + 1) % confirmationMessages.length;
+    const message = confirmationMessages[lastConfirmationIndex];
+    try { window.localStorage.setItem(confirmationKey, String(lastConfirmationIndex)); } catch {}
     event.currentTarget.href = `https://wa.me/5575982116019?text=${encodeURIComponent(message)}`;
   });
 

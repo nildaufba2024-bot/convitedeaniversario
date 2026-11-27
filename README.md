@@ -4,7 +4,7 @@ Convite interativo inspirado no projeto `convite-agata`. A tela inicial usa a ca
 
 O link público `https://convitedeaniversario-psi.vercel.app/` usa `dist/assets/preview-whatsapp-camila-v2.jpg` como imagem de prévia ao compartilhar o convite no WhatsApp. Essa versão preserva a arte enviada e ocupa menos de 350 KB; o PNG original permanece em `dist/assets/preview-whatsapp-camila.png`.
 
-O botão **Confirmar presença** escolhe aleatoriamente uma das dez mensagens fornecidas e abre uma conversa no WhatsApp com `+55 75 98211-6019`. O convidado precisa tocar em enviar no WhatsApp para concluir a confirmação.
+O botão **Confirmar presença** alterna entre as dez mensagens fornecidas, sem repetir a mesma em cliques seguidos, e abre uma conversa no WhatsApp com `+55 75 98211-6019`. O convidado precisa tocar em enviar no WhatsApp para concluir a confirmação.
 
 A tela final atual usa `dist/assets/tela-final-camila-v3.png`. As duas versões anteriores permanecem em `dist/assets/` para comparação. Nos últimos 3 segundos do vídeo, a imagem final aparece por trás e ganha espaço gradualmente até substituir a animação, sem tela preta. No celular, o vídeo e a tela final ocupam toda a área disponível, sem margens laterais ou corte dos textos.
 
