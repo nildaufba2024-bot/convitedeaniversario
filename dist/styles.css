@@ -29,7 +29,10 @@ button{font:inherit}
 .final-hotspot:hover{background:#fff3;box-shadow:0 0 22px #9c184570}
 .final-hotspot:active{background:#fff5}
 .map-hotspot{left:7.9%;top:54.8%;width:41%;height:5.3%}
-.calendar-hotspot{left:50.8%;top:54.8%;width:41%;height:5.3%}
+.confirm-hotspot{left:50.8%;top:54.8%;width:41.5%;height:5.3%;display:flex;align-items:center;justify-content:center;gap:1.1cqw;border:2px solid #ffd3dc;background:linear-gradient(135deg,#ca1451 0%,#9e0b3b 50%,#770621 100%);box-shadow:0 0 10px #ff709c99,inset 0 1px 5px #ffa7bc88;color:#fff8f6;text-decoration:none;font-size:3.05cqw;font-weight:500;white-space:nowrap;text-shadow:0 1px 3px #590720}
+.confirm-hotspot svg{width:4.6cqw;height:4.6cqw;flex:none}
+.confirm-hotspot:hover{background:linear-gradient(135deg,#e22b67,#ae0f43 55%,#85082d);box-shadow:0 0 18px #ff8bb5}
+.confirm-hotspot:active{background:#9e0b3b}
 .replay-hotspot{left:25.5%;top:70%;width:49%;height:3.5%}
 .experience.is-transitioning .video-screen{position:fixed;inset:0;z-index:1}
 .experience.is-transitioning .invitation{position:fixed;inset:0;z-index:2;animation:final-reveal .3s ease-out both}

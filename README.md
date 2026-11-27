@@ -1,6 +1,8 @@
 # Convite digital — Camila Godoy
 
-Convite interativo inspirado no projeto `convite-agata`. A tela inicial usa a capa rosa enviada. O toque no envelope reproduz 5 segundos do vídeo novo. Em seguida aparece a tela final interativa, com contagem regressiva atualizada em tempo real e áreas de toque sobre os botões de mapa, agenda e replay.
+Convite interativo inspirado no projeto `convite-agata`. A tela inicial usa a capa rosa enviada. O toque no envelope reproduz 5 segundos do vídeo novo. Em seguida aparece a tela final interativa, com contagem regressiva atualizada em tempo real e áreas de toque sobre os botões de mapa, confirmação de presença e replay.
+
+O botão **Confirmar presença** abre uma conversa no WhatsApp com `+55 75 98211-6019` e uma mensagem pronta. O convidado precisa tocar em enviar no WhatsApp para concluir a confirmação.
 
 A tela final atual usa `dist/assets/tela-final-camila-v3.png`. As duas versões anteriores permanecem em `dist/assets/` para comparação. Uma fusão simples leva do vídeo para essa tela. No celular, o vídeo e a tela final ocupam toda a área disponível, sem margens laterais ou corte dos textos.
 

@@ -71,32 +71,6 @@
     trigger.focus({ preventScroll: true });
   });
 
-  $('calendarButton').addEventListener('click', () => {
-    const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
-    const ics = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Convite Camila Godoy//PT-BR',
-      'BEGIN:VEVENT',
-      'UID:camila-godoy-20261215@example.invalid',
-      'DTSTAMP:' + stamp,
-      'DTSTART:20261215T230000Z',
-      'SUMMARY:Aniversário de Camila Godoy - Coquette Pink Party',
-      'LOCATION:Rua E\\, Zona Oeste\\, nº 225',
-      'DESCRIPTION:Conto com a sua presença para celebrarmos juntos mais um ano de vida!',
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
-    const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'aniversario-camila-godoy.ics';
-    document.body.append(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-
   updateCountdown();
   window.setInterval(updateCountdown, 1000);
 })();
