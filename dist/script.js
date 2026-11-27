@@ -5,10 +5,24 @@
   const videoScreen = $('videoScreen');
   const video = $('invitationVideo');
   const invitation = $('invitation');
+  const shade = $('transitionShade');
   const trigger = $('openInvite');
   const eventAt = Date.parse('2026-12-15T20:00:00-03:00');
+  const confirmationMessages = [
+    'Oi, Camila! Presença confirmada! Mal posso esperar para comemorar esse dia especial com você!',
+    'Camila, pode contar comigo! Estarei lá para celebrar seu aniversário!',
+    'Oii, Camila! Já reservei essa data. Não vou perder sua festa por nada!',
+    'Camila, estarei presente! Que seja uma noite incrível e cheia de momentos especiais!',
+    'Oi, Camila! Presença confirmada! Bora comemorar seu aniversário em grande estilo!',
+    'Camila, pode preparar a festa porque eu vou! Vai ser maravilhoso celebrar com você!',
+    'Oii, Camila! Minha presença está garantida. Já estou na expectativa para esse grande dia!',
+    'Camila, não poderia faltar nesse momento tão especial. Pode contar comigo!',
+    'Oi, Camila! Convite aceito e presença confirmada! Que venha essa festa maravilhosa!',
+    'Camila, dia 15 de dezembro temos um encontro marcado! Estarei lá para comemorar com você!'
+  ];
   let showingInvitation = false;
   let transitionTimer;
+  let swapTimer;
 
   function updateCountdown() {
     const remaining = Math.max(0, Math.ceil((eventAt - Date.now()) / 1000));
@@ -30,14 +44,26 @@
     if (showingInvitation) return;
     showingInvitation = true;
     video.pause();
-    invitation.hidden = false;
-    experience.classList.add('is-transitioning');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    transitionTimer = window.setTimeout(() => {
+    if (reduced) {
       videoScreen.hidden = true;
-      experience.classList.remove('is-transitioning');
+      invitation.hidden = false;
+      updateCountdown();
       window.scrollTo({ top: 0, behavior: 'instant' });
-    }, reduced ? 10 : 300);
+      return;
+    }
+    shade.hidden = false;
+    experience.classList.add('is-transitioning');
+    swapTimer = window.setTimeout(() => {
+      invitation.hidden = false;
+      videoScreen.hidden = true;
+      updateCountdown();
+    }, 750);
+    transitionTimer = window.setTimeout(() => {
+      experience.classList.remove('is-transitioning');
+      shade.hidden = true;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 2500);
   }
 
   trigger.addEventListener('click', () => {
@@ -60,7 +86,9 @@
 
   $('replayButton').addEventListener('click', () => {
     window.clearTimeout(transitionTimer);
+    window.clearTimeout(swapTimer);
     experience.classList.remove('is-transitioning');
+    shade.hidden = true;
     video.pause();
     video.currentTime = 0;
     invitation.hidden = true;
@@ -69,6 +97,11 @@
     showingInvitation = false;
     window.scrollTo({ top: 0, behavior: 'instant' });
     trigger.focus({ preventScroll: true });
+  });
+
+  $('confirmButton').addEventListener('click', event => {
+    const message = confirmationMessages[Math.floor(Math.random() * confirmationMessages.length)];
+    event.currentTarget.href = `https://wa.me/5575982116019?text=${encodeURIComponent(message)}`;
   });
 
   updateCountdown();
