@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ae496b">
+  <meta name="description" content="Convite de aniversário de Camila Godoy — Coquette Pink Party, 15 de dezembro de 2026, às 20h.">
+  <title>Camila Godoy · Coquette Pink Party</title>
+  <link rel="preload" href="assets/capa-camila.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <main id="experience" class="experience">
+    <section class="intro" id="intro" aria-label="Abrir convite">
+      <div class="cover-frame">
+        <img class="cover-art" src="assets/capa-camila.png" width="995" height="1581" alt="Um convite especial para você. Camila Godoy, Coquette Pink Party. Toque no envelope para abrir.">
+        <button class="cover-hotspot" id="openInvite" type="button" aria-label="Abrir o convite de aniversário de Camila Godoy"></button>
+      </div>
+    </section>
+
+    <section class="video-screen" id="videoScreen" aria-label="Abertura animada do convite" hidden>
+      <video class="invitation-video" id="invitationVideo" src="assets/abertura-5s-camila.mp4" poster="assets/capa-camila.png" playsinline preload="metadata" aria-label="Animação do convite de Camila Godoy"></video>
+      <button class="skip-video" id="skipVideo" type="button">Pular vídeo</button>
+    </section>
+
+    <section class="invitation" id="invitation" aria-label="Convite de Camila Godoy" hidden>
+      <div class="final-frame">
+        <img class="final-art" src="assets/tela-final-camila-v3.png" width="941" height="1672" alt="Aniversário de Camila Godoy, Coquette Pink Party. Dia 15 de dezembro de 2026, às 20h, na Rua E, Zona Oeste, número 225. Conto com a sua presença para celebrarmos juntos mais um ano de vida!">
+        <div class="live-countdown" id="countdown" role="timer" aria-label="Contagem regressiva para a festa">
+          <div><strong id="days">00</strong><span>dias</span></div>
+          <div><strong id="hours">00</strong><span>horas</span></div>
+          <div><strong id="minutes">00</strong><span>minutos</span></div>
+          <div><strong id="seconds">00</strong><span>segundos</span></div>
+        </div>
+        <a class="final-hotspot map-hotspot" id="mapLink" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20E%2C%20Zona%20Oeste%2C%20225" target="_blank" rel="noopener noreferrer" aria-label="Ver localização no mapa"></a>
+        <button class="final-hotspot calendar-hotspot" id="calendarButton" type="button" aria-label="Adicionar à agenda"></button>
+        <button class="final-hotspot replay-hotspot" id="replayButton" type="button" aria-label="Ver a abertura novamente"></button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
