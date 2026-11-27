@@ -6,7 +6,7 @@ O link público `https://convitedeaniversario-psi.vercel.app/` usa `dist/assets/
 
 O botão **Confirmar presença** escolhe aleatoriamente uma das dez mensagens fornecidas e abre uma conversa no WhatsApp com `+55 75 98211-6019`. O convidado precisa tocar em enviar no WhatsApp para concluir a confirmação.
 
-A tela final atual usa `dist/assets/tela-final-camila-v3.png`. As duas versões anteriores permanecem em `dist/assets/` para comparação. Ao fim do vídeo, a arte da contagem surge bem apagada e acende gradualmente durante 4 segundos, com brilho suave nos números. No celular, o vídeo e a tela final ocupam toda a área disponível, sem margens laterais ou corte dos textos.
+A tela final atual usa `dist/assets/tela-final-camila-v3.png`. As duas versões anteriores permanecem em `dist/assets/` para comparação. Nos últimos 3 segundos do vídeo, a imagem final aparece por trás e ganha espaço gradualmente até substituir a animação, sem tela preta. No celular, o vídeo e a tela final ocupam toda a área disponível, sem margens laterais ou corte dos textos.
 
 ## Dados usados
 

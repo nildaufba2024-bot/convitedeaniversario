@@ -5,7 +5,6 @@
   const videoScreen = $('videoScreen');
   const video = $('invitationVideo');
   const invitation = $('invitation');
-  const shade = $('transitionShade');
   const trigger = $('openInvite');
   const eventAt = Date.parse('2026-12-15T20:00:00-03:00');
   const confirmationMessages = [
@@ -21,7 +20,21 @@
     'Camila, dia 15 de dezembro temos um encontro marcado! Estarei lá para comemorar com você!'
   ];
   let showingInvitation = false;
-  let transitionTimer;
+  let blendFrame;
+
+  function clearBlend() {
+    window.cancelAnimationFrame(blendFrame);
+    experience.classList.remove('is-video-ending');
+    experience.style.removeProperty('--video-opacity');
+  }
+
+  function blendVideo() {
+    if (showingInvitation || video.ended || videoScreen.hidden) return;
+    const remaining = Math.max(0, video.duration - video.currentTime);
+    const progress = Math.min(1, Math.max(0, 1 - remaining / 3));
+    experience.style.setProperty('--video-opacity', String(1 - progress));
+    blendFrame = window.requestAnimationFrame(blendVideo);
+  }
 
   function updateCountdown() {
     const remaining = Math.max(0, Math.ceil((eventAt - Date.now()) / 1000));
@@ -43,30 +56,17 @@
     if (showingInvitation) return;
     showingInvitation = true;
     video.pause();
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      videoScreen.hidden = true;
-      invitation.hidden = false;
-      updateCountdown();
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      return;
-    }
+    clearBlend();
+    videoScreen.hidden = true;
     invitation.hidden = false;
     updateCountdown();
-    shade.hidden = false;
-    experience.classList.add('is-transitioning');
-    transitionTimer = window.setTimeout(() => {
-      videoScreen.hidden = true;
-      experience.classList.remove('is-transitioning');
-      shade.hidden = true;
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }, 4000);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   trigger.addEventListener('click', () => {
     if (!videoScreen.hidden) return;
     showingInvitation = false;
-    experience.classList.remove('is-video-ending');
+    clearBlend();
     video.currentTime = 0;
     intro.hidden = true;
     invitation.hidden = true;
@@ -79,20 +79,19 @@
   });
 
   video.addEventListener('timeupdate', () => {
-    if (!Number.isFinite(video.duration)) return;
-    if (video.duration - video.currentTime <= 1.5) {
-      experience.classList.add('is-video-ending');
-    }
+    if (showingInvitation || !Number.isFinite(video.duration) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (video.duration - video.currentTime > 3 || experience.classList.contains('is-video-ending')) return;
+    invitation.hidden = false;
+    updateCountdown();
+    experience.classList.add('is-video-ending');
+    blendVideo();
   });
   video.addEventListener('ended', reveal);
   video.addEventListener('error', reveal);
   $('skipVideo').addEventListener('click', reveal);
 
   $('replayButton').addEventListener('click', () => {
-    window.clearTimeout(transitionTimer);
-    experience.classList.remove('is-transitioning');
-    experience.classList.remove('is-video-ending');
-    shade.hidden = true;
+    clearBlend();
     video.pause();
     video.currentTime = 0;
     invitation.hidden = true;
