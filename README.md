@@ -12,9 +12,9 @@ A tela final atual usa `dist/assets/tela-final-camila-v3.png`. As duas versões 
 
 - Aniversário de Camila Godoy — Coquette Pink Party
 - 15 de dezembro de 2026, às 20h (horário de Brasília)
-- Rua E, Zona Oeste, nº 225
+- Rua E, Zona Oeste, nº 225 — Ribeira do Pombal, BA, 48400-000
 
-O flyer não informa cidade. O link de mapa pesquisa o endereço como impresso, sem adicionar uma cidade. O número de confirmação foi fornecido depois.
+O flyer não informa cidade, mas o link de localização foi fornecido depois e aponta para Rua E, 225, Ribeira do Pombal, BA. O número de confirmação também foi fornecido depois.
 
 O arquivo `dist/assets/abertura-5s-camila.mp4` usa os primeiros 5 segundos de `gemini_generated_video_06756c5d.mp4`. O áudio diminui nos últimos 0,25 segundo. A contagem impressa na imagem final é coberta por um painel e os números são renderizados em HTML para permanecerem atualizados.
 
