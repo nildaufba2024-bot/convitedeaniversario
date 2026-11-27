@@ -22,7 +22,6 @@
   ];
   let showingInvitation = false;
   let transitionTimer;
-  let swapTimer;
 
   function updateCountdown() {
     const remaining = Math.max(0, Math.ceil((eventAt - Date.now()) / 1000));
@@ -52,18 +51,16 @@
       window.scrollTo({ top: 0, behavior: 'instant' });
       return;
     }
+    invitation.hidden = false;
+    updateCountdown();
     shade.hidden = false;
     experience.classList.add('is-transitioning');
-    swapTimer = window.setTimeout(() => {
-      invitation.hidden = false;
-      videoScreen.hidden = true;
-      updateCountdown();
-    }, 750);
     transitionTimer = window.setTimeout(() => {
+      videoScreen.hidden = true;
       experience.classList.remove('is-transitioning');
       shade.hidden = true;
       window.scrollTo({ top: 0, behavior: 'instant' });
-    }, 2500);
+    }, 4000);
   }
 
   trigger.addEventListener('click', () => {
@@ -86,7 +83,6 @@
 
   $('replayButton').addEventListener('click', () => {
     window.clearTimeout(transitionTimer);
-    window.clearTimeout(swapTimer);
     experience.classList.remove('is-transitioning');
     shade.hidden = true;
     video.pause();
