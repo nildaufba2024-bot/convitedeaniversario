@@ -66,6 +66,7 @@
   trigger.addEventListener('click', () => {
     if (!videoScreen.hidden) return;
     showingInvitation = false;
+    experience.classList.remove('is-video-ending');
     video.currentTime = 0;
     intro.hidden = true;
     invitation.hidden = true;
@@ -77,6 +78,12 @@
     });
   });
 
+  video.addEventListener('timeupdate', () => {
+    if (!Number.isFinite(video.duration)) return;
+    if (video.duration - video.currentTime <= 1.5) {
+      experience.classList.add('is-video-ending');
+    }
+  });
   video.addEventListener('ended', reveal);
   video.addEventListener('error', reveal);
   $('skipVideo').addEventListener('click', reveal);
@@ -84,6 +91,7 @@
   $('replayButton').addEventListener('click', () => {
     window.clearTimeout(transitionTimer);
     experience.classList.remove('is-transitioning');
+    experience.classList.remove('is-video-ending');
     shade.hidden = true;
     video.pause();
     video.currentTime = 0;
